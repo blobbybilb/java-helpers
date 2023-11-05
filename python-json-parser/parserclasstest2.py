@@ -43,13 +43,13 @@ json_strings = [json.dumps(json_dict, indent=5) for json_dict in json_dicts]
 for json_string in json_strings:
     # print(json_string)
     # print(json.loads(json_string))
-    # print(JSONParser(json_string).parse())
+    # print(Helpers.JSON.JSONParser(json_string).parse())
     print(json.loads(json_string) == JSONParser(json_string).parse(), end=" ")
     # print()
 
 x = """{"hi": [ [ ] , { }, [ ] ], "hi2": {"hi": {  }
  }, "hi3":
- 2.48
+ -2.48
  } """
 # x = """{"hi": ["sdf", [{}]], "hi2": "hihihi"}"""
 print(
