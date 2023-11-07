@@ -19,6 +19,33 @@ public class Request {
         if (responseCode != HttpURLConnection.HTTP_OK)
             throw new Exception("HTTP GET request failed with response code: " + responseCode);
 
+        return getStringFromConnection(connection);
+    }
+
+    public static String post(String url, String postData, ContentType contentType) throws Exception {
+        HttpURLConnection connection = getHttpURLConnection(url, postData, contentType);
+        return getResponseString(connection);
+    }
+
+    public static String post(String url, Map<String, String> postData) throws Exception {
+        HttpURLConnection connection = getHttpURLConnection(url, getPostDataString(postData), ContentType.FORM);
+        return getResponseString(connection);
+    }
+
+    private static String getPostDataString(Map<String, String> postData) {
+        StringBuilder result = new StringBuilder();
+        for (Map.Entry<String, String> entry : postData.entrySet()) {
+            if (!result.isEmpty()) {
+                result.append("&");
+            }
+            result.append(entry.getKey());
+            result.append("=");
+            result.append(entry.getValue());
+        }
+        return result.toString();
+    }
+
+    private static String getStringFromConnection(HttpURLConnection connection) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         String inputLine;
         StringBuilder response = new StringBuilder();
@@ -28,19 +55,10 @@ public class Request {
         return response.toString();
     }
 
-    public static String post(String url, String postData, ContentType contentType) throws Exception {
-        HttpURLConnection connection = getHttpURLConnection(url, postData, contentType);
+    private static String getResponseString(HttpURLConnection connection) throws Exception {
         int responseCode = connection.getResponseCode();
         if (responseCode == HttpURLConnection.HTTP_OK) {
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String inputLine;
-            StringBuilder response = new StringBuilder();
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-            connection.disconnect();
-            return response.toString();
+            return getStringFromConnection(connection);
         } else {
             throw new Exception("HTTP POST request failed with response code: " + responseCode);
         }
@@ -58,46 +76,5 @@ public class Request {
             wr.flush();
         }
         return connection;
-    }
-
-    public static String post(String url, Map<String, String> postData) throws Exception {
-        URL obj = new URI(url).toURL();
-        HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
-        connection.setRequestMethod("POST");
-        connection.setDoOutput(true);
-        String postDataString = getPostDataString(postData);
-        connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-        connection.setRequestProperty("Content-Length", Integer.toString(postDataString.getBytes().length));
-        try (DataOutputStream wr = new DataOutputStream(connection.getOutputStream())) {
-            wr.writeBytes(postDataString);
-            wr.flush();
-        }
-        int responseCode = connection.getResponseCode();
-        if (responseCode == HttpURLConnection.HTTP_OK) {
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String inputLine;
-            StringBuilder response = new StringBuilder();
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-            connection.disconnect();
-            return response.toString();
-        } else {
-            throw new Exception("HTTP POST request failed with response code: " + responseCode);
-        }
-    }
-
-    private static String getPostDataString(Map<String, String> postData) {
-        StringBuilder result = new StringBuilder();
-        for (Map.Entry<String, String> entry : postData.entrySet()) {
-            if (!result.isEmpty()) {
-                result.append("&");
-            }
-            result.append(entry.getKey());
-            result.append("=");
-            result.append(entry.getValue());
-        }
-        return result.toString();
     }
 }
