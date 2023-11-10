@@ -1,8 +1,11 @@
+import Helpers.HTTP.ContentType;
 import Helpers.JSON.JSONParser;
 import Helpers.JSON.JSONParserException;
+import Helpers.HTTP.Request;
+import Helpers.HTTP.Server;
 
 public class Test {
-//    public static void main(String[] args) throws JSONParserException {
+    //    public static void main(String[] args) throws JSONParserException {
 //        String x = "[\n" +
 //                "    [{\"name\": \"Alice\", \"scores\": [95, 88, 92]}, {\"name\": \"Bob\", \"scores\": [89, 91, 84]}],\n" +
 //                "    [1, \"hello\", {\"bool\": true, \"number\": 42.0}],\n" +
@@ -43,4 +46,10 @@ public class Test {
 ////        HashMap<String, Object> y = (HashMap<String, Object>) p.parse();
 //        System.out.println(p.parse());
 //    }
+    public static void main(String[] args) throws Exception {
+        String a = Request.get("http://localhost:8000");
+        System.out.println(a);
+        String b = Request.post("http://localhost:8000", "", ContentType.RAW);
+        System.out.println(b);
+    }
 }

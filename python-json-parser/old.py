@@ -62,7 +62,6 @@ class JSONParser:
             self.df()
             self.dw()
 
-
             if self.jstr[0] == '"':
                 self.df()
                 value = self.strend()
@@ -72,7 +71,7 @@ class JSONParser:
                     self.dw()
 
                     r[key] = value
-                    return r # added during rewrite
+                    return r  # added during rewrite
                 if self.jstr[0] == ",":
                     self.df()
                     self.dw()
@@ -119,7 +118,7 @@ class JSONParser:
                 if self.jstr[0] == "]":
                     self.df()
                     self.dw()
-                    return r # added during rewrite
+                    return r  # added during rewrite
                 if self.jstr[0] == ",":
                     self.df()
                     self.dw()
@@ -155,6 +154,7 @@ class JSONParser:
             raise ValueError("invalid json")
 
         return json_res
+
 
 x = """{"hi": ["sdf", [  ]], "hi2": "hihihi"}"""
 print(JSONParser(x).parse())
