@@ -23,6 +23,7 @@ public class Server {
     public void start() {
         s.setExecutor(null);
         s.start();
+        System.out.println("running");
     }
 
     private static boolean isMatch(List<String> enteredRoute, List<String> routeToCheck) {
@@ -57,7 +58,7 @@ public class Server {
         return this;
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
 //        Server server = new Server(8000);
 //        server.get("/", Server::test);
 //        System.out.println(Server.isMatch(convertToRouteList("GET", "/users/1"), convertToRouteList("GET", "/users/:id")));
@@ -65,13 +66,14 @@ public class Server {
 //        System.out.println(Server.isMatch(convertToRouteList("GET", "/users/1"), convertToRouteList("GET", "/users/1")));
 //        System.out.println(Server.isMatch(convertToRouteList("GET", "/users/1"), convertToRouteList("GET", "/users/1/posts")));
 //        System.out.println(Server.isMatch(convertToRouteList("GET", "/users/1/posts"), convertToRouteList("GET", "/users/1")));
-        Server server = new Server(8000);
+        Server server = new Server(3000);
 //        server.get("/", Server::test);
-        server.post("/", r -> "<b>hi</b>");
+        server.post("/", r -> "<b>hi</b>" + r.postData);
         server.get("/users/:id", r -> r.routeParams.get("id"));
         server.get("/users/:id/posts", r -> r.getParams.get("id") + " <b>hi</b>");
         server.get("/users/:id/posts/:post_id", r -> r.routeParams.get("id") + " posts " + r.routeParams.get("post_id"));
         server.start();
+        System.out.println(Request.post("http://localhost:3000", "hi2", ContentType.RAW));
     }
 
     private static String test(RouteContext r) {

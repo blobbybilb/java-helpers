@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 
 public class KVStore<ValueType> {
     public Path dataDir;
@@ -54,5 +56,15 @@ public class KVStore<ValueType> {
             throw new KVStoreException("Invalid value type for key " + key);
         }
     }
+
+
+    public void del(String key) throws KVStoreException {
+        try {
+            Files.deleteIfExists(this.dataDir.resolve(removeStartingSlash(key)));
+        } catch (IOException e) {
+            throw new KVStoreException("Error deleting value for key " + key);
+        }
+    }
 }
+
 

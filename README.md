@@ -16,8 +16,8 @@ java build systems/package management is not worth it.
 
 ### What does it have?
 
-- A custom JSON parser [(more info)](https://github.com/blobbybilb/java-helpers/tree/master/src#readme) (and a
-serializer too)
-- HTTP
-- Client
-- Server
+- A custom JSON parser [(more info)](https://github.com/blobbybilb/java-helpers/tree/master/src/Helpers/JSON#readme)
+- And a JSON serializer too
+- HTTP client (single line HTTP POST/GET)
+- HTTP server (a little WIP but should work)
+- A key-value store
