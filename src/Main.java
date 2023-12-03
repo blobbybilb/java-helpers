@@ -46,6 +46,6 @@ public class Main {
                 ]""";
         JSONParser p = new JSONParser(x);
 //        HashMap<String, Object> y = (HashMap<String, Object>) p.parse();
-        System.out.println(((List<Object>) p.parse()).get(5));
+        System.out.println(((List<Object>) p.parse()).get(1));
     }
 }

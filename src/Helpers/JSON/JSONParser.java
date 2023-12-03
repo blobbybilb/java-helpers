@@ -7,8 +7,8 @@ import java.util.Set;
 import java.util.ArrayList;
 
 public class JSONParser {
-    String jstr;
-    int jlen;
+    private String jstr;
+    private final int jlen;
     private final Set<Character> numchars = Set.of('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '.');
 
     public JSONParser(String jstr) {
@@ -131,7 +131,8 @@ public class JSONParser {
                 r = false;
                 this.jstr = this.jstr.substring(5);
             } else if (this.numchars.contains(jstr.charAt(0))) {
-                r = this.numend();
+                double a = this.numend();
+                r = a % 1 == 0 ? (int) a : a;
             } else {
                 throw this.e();
             }
