@@ -1,4 +1,4 @@
-package Helpers.HTTP;
+package helpers.HTTP;
 
 public enum ContentType {
     JSON("application/json"),

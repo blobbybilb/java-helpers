@@ -1,4 +1,4 @@
-package Helpers.HTTP;
+package helpers.HTTP;
 
 public class HTTPRequestException {
 }

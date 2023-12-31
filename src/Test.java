@@ -1,8 +1,5 @@
-import Helpers.HTTP.ContentType;
-import Helpers.JSON.JSONParser;
-import Helpers.JSON.JSONParserException;
-import Helpers.HTTP.Request;
-import Helpers.HTTP.Server;
+import helpers.HTTP.ContentType;
+import helpers.HTTP.Request;
 
 public class Test {
     //    public static void main(String[] args) throws JSONParserException {

@@ -1,4 +1,4 @@
-package Helpers.JSON;
+package helpers.JSON;
 
 import java.util.HashMap;
 import java.util.List;

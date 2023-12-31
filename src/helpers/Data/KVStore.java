@@ -1,16 +1,14 @@
-package Helpers.Data;
+package helpers.Data;
 
-import Helpers.JSON.JSONParser;
-import Helpers.JSON.JSONParserException;
-import Helpers.JSON.JSONSerializer;
-import Helpers.JSON.JSONSerializerException;
+import helpers.JSON.JSONParser;
+import helpers.JSON.JSONParserException;
+import helpers.JSON.JSONSerializer;
+import helpers.JSON.JSONSerializerException;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
 
 public class KVStore<ValueType> {
     public Path dataDir;

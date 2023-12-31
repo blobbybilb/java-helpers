@@ -1,4 +1,4 @@
-package Helpers.JSON;
+package helpers.JSON;
 
 public class JSONParserException extends RuntimeException {
     public JSONParserException(String message) {

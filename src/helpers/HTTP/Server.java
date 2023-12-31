@@ -1,4 +1,4 @@
-package Helpers.HTTP;
+package helpers.HTTP;
 
 import java.io.IOException;
 import java.io.OutputStream;

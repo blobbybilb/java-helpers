@@ -1,8 +1,5 @@
-import Helpers.JSON.JSONParser;
-import Helpers.JSON.JSONParserException;
-
-import java.util.ArrayList;
-import java.util.HashMap;
+import helpers.JSON.JSONParser;
+import helpers.JSON.JSONParserException;
 import java.util.List;
 
 public class Main {
