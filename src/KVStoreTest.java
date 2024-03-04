@@ -1,7 +1,9 @@
-package helpers.Data;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import helpers.Data.KVStore;
+import helpers.Data.KVStoreException;
 
 class KVStoreTest {
     public static void main(String[] args) {

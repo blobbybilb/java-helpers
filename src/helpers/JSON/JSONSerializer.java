@@ -50,7 +50,7 @@ public class JSONSerializer {
         return sb.toString();
     }
 
-    @SuppressWarnings({"unchecked", "rawtypes"})
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     private String serialize(Object x, int format) throws JSONSerializerException {
         this.jind = format;
         if (x instanceof String) { // replace with switch?
@@ -85,13 +85,15 @@ public class JSONSerializer {
         return this.serialize(this.jobj, indent);
     }
 
-    public static void main(String[] args) throws JSONParserException, JSONSerializerException {
-        Object test = new JSONParser("""
-                [[{"hi": "hello", "nums": [95, 88, 92, null]}, {}], [],
-                [1, "test", {"bool": true, "decimal": 42.0}]]""").parse();
+    // public static void main(String[] args) throws JSONParserException,
+    // JSONSerializerException {
+    // Object test = new JSONParser("""
+    // [[{"hi": "hello", "nums": [95, 88, 92, null]}, {}], [],
+    // [1, "test", {"bool": true, "decimal": 42.0}]]""").parse();
 
-        System.out.println(test);
-        System.out.println(new JSONParser(new JSONSerializer(test).serialize()).parse());
-        System.out.println(new JSONSerializer(test).serialize());
-    }
+    // System.out.println(test);
+    // System.out.println(new JSONParser(new
+    // JSONSerializer(test).serialize()).parse());
+    // System.out.println(new JSONSerializer(test).serialize());
+    // }
 }

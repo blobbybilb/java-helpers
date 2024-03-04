@@ -6,8 +6,7 @@ ported to Java.
 This is the first time I've written a parser, and I haven't really looked at how parsers are written.
 It doesn't have a separate lexer/tokenizer/etc., it just parses the thing. It also doesn't do validation.
 
-I haven't tried to make it fast/efficient, but I also haven't done obviously slow things. For example, I've used recursion for
-nested collections, but not for places where it needs to go through every character in a string.
+I haven't tried to make it fast/efficient, but I also haven't done obviously slow things. For example, I've used recursion for nested collections, but not for places where it needs to go through every character in a string.
 
 Currently, it's one class, 144 LoC Java and 117 LoC Python (following PEP8), including comments and without trying to make it short.
 
