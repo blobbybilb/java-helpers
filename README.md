@@ -39,7 +39,7 @@ String jsonString = new JSONSerializer(data).serialize();
 
 ```java
 // Create a KV store, SomeType is the type of the value which can be a JSON-able type (see above)
-Object KVStore<SomeType> kv = new KVStore<>(dataDirectoryString);
+KVStore<SomeType> kv = new KVStore<>(dataDirectoryString);
 // Set a value
 kv.set("key", value); // value of type SomeType
 // Get a value
@@ -61,5 +61,6 @@ String response = Request.post("http://example.com", String, Helpers.HTTP.Conten
 #### HTTP Server
 
 ```java
-// WIP
+Server server = new Server(3000);
+server.get
 ```

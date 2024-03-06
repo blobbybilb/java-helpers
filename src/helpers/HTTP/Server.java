@@ -69,11 +69,11 @@ public class Server {
         Server server = new Server(3000);
 //        server.get("/", Server::test);
         server.post("/", r -> "<b>hi</b>" + r.postData);
-        server.get("/users/:id", r -> r.routeParams.get("id"));
-        server.get("/users/:id/posts", r -> r.getParams.get("id") + " <b>hi</b>");
+        server.post("/users/:id", r -> r.routeParams.get("id"));
+        server.post("/users/:id/posts", r -> r.getParams.get("id") + " <b>hi</b>");
         server.get("/users/:id/posts/:post_id", r -> r.routeParams.get("id") + " posts " + r.routeParams.get("post_id"));
         server.start();
-        System.out.println(Request.post("http://localhost:3000", "hi2", ContentType.RAW));
+        System.out.println(Request.post("http://localhost:3000/users/hi/posts?id=hello", "hi2", ContentType.RAW));
     }
 
     private static String test(RouteContext r) {
@@ -127,5 +127,12 @@ public class Server {
         HashMap<String, String> routeParams = new HashMap<>();
         HashMap<String, String> getParams = new HashMap<>();
         String postData;
+    }
+
+    static void test () throws IOException {
+        Server server = new Server(3000);
+        server.get("/route", req -> "hello world");
+        server.get("/:pathparam", req -> req.routeParams.get("id"));
+        server.get("/")
     }
 }
